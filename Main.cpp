@@ -225,14 +225,14 @@ int main() {
 		writeInfo("Name of controller ID 0: " + name);
 	}
 
-	Material coral = Material(glm::vec3(0.0f, 0.1f, 0.06f), glm::vec3(0.0f, 0.50980392f, 0.50980392f), glm::vec3(0.50196078f, 0.50196078f, 0.50196078f), 0.25f);
+	Material material = Material(glm::vec3(0.0f, 0.1f, 0.06f), glm::vec3(0.0f, 0.50980392f, 0.50980392f), glm::vec3(0.50196078f, 0.50196078f, 0.50196078f), 0.25f);
 
 	LightSource cubeLight = LightSource(Light(Position(0.0f, 0.5f, 1.0f), glm::vec3(1.0f), glm::vec3(1.0f), glm::vec3(1.0f), glm::vec3(0.2f)), 36);
 	cubeLight.setScale(0.25f);
 	cubeLight.setIgnoreColor(true);
 
-	Entity cube = Entity(Position(0.0f, 0.0f, 0.0f), 30, coral);
-	Entity plane(Position(glm::vec3(0.0f)), 6, coral);
+	Entity cube = Entity(Position(0.0f, 0.0f, 0.0f), 30, material);
+	Entity plane(Position(glm::vec3(0.0f)), 6, material);
 	// ----- GAMELOOP -----
 	while (!glfwWindowShouldClose(window)) {
 		// INPUT
