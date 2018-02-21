@@ -43,7 +43,6 @@ public:
 	Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
 	TransformationMatrix GetViewMatrix();
 	void ProcessKeyboard(Camera_Movement direction, float deltaTime);
-	void ProcessJoystick(Camera_Movement direction, float deltaTime, float stickFactor);
 	void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 	void ProcessMouseScroll(float yoffset);
 

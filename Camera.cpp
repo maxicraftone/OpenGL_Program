@@ -47,18 +47,6 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime) {
 	}
 }
 
-void Camera::ProcessJoystick(Camera_Movement direction, float deltaTime, float stickFactor) {
-	float velocity = MovementSpeed * deltaTime * stickFactor;
-
-	if (direction == FORWARD) {
-		Pos.add(Front.getPosition() * velocity);
-	}
-	else if (direction == RIGHT) {
-		Pos.add(Right.getAxis() * velocity);
-	}
-	Pos.setY(0.0f);
-}
-
 void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch) {
 	xoffset *= MouseSensitivity;
 	yoffset *= MouseSensitivity;

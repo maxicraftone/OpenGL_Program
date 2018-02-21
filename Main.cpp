@@ -11,7 +11,6 @@
 #include "Maths.h"
 #include "GL_wrapper.h"
 #include "Camera.h"
-#include "Joystick.h"
 #include "Logger.h"
 #include "Entity.h"
 #include "Renderer.h"
@@ -26,7 +25,6 @@ int WIDTH = 1280;
 int HEIGHT = 720;
 
 bool wireframe = false;
-bool controllerUsed;
 
 float vertices[] = {
 	// positions          // normals           // texture coords
@@ -142,11 +140,8 @@ unsigned int indices[] = {
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
-void processJoystickInput(GLFWwindow* window);
-void processJoystickMovement();
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-void joystick_callback(int joystick, int event);
 void calculateDeltaTime();
 
 float lastX = (float)WIDTH / 2, lastY = (float)HEIGHT / 2;
@@ -164,7 +159,6 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 Camera camera = Camera(vec3(0.0f, 0.0f, 3.0f));
-Joystick joystick = Joystick(GLFW_JOYSTICK_1);
 
 int main() {
 	initGLFW();
@@ -177,7 +171,6 @@ int main() {
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
-	glfwSetJoystickCallback(joystick_callback);
 
 	ShaderProgram shaderProgram = ShaderProgram("basic.vsh", "basic.fsh");
 	shaderProgram.linkProgram();
@@ -213,17 +206,6 @@ int main() {
 	TransformationMatrix projection;
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-	int joystick = glfwJoystickPresent(GLFW_JOYSTICK_1);
-	writeInfo("Controller ID 0 active: " + std::to_string(joystick));
-	if (joystick == 0)
-		controllerUsed = false;
-	else
-		controllerUsed = true;
-	if (controllerUsed) {
-		std::string name = glfwGetJoystickName(GLFW_JOYSTICK_1);
-		writeInfo("Name of controller ID 0: " + name);
-	}
 
 	Material material = Material(glm::vec3(0.0f, 0.1f, 0.06f), glm::vec3(0.0f, 0.50980392f, 0.50980392f), glm::vec3(0.50196078f, 0.50196078f, 0.50196078f), 0.25f);
 
@@ -344,9 +326,6 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
 void processInput(GLFWwindow *window)
 {
-	if(controllerUsed)
-		processJoystickInput(window);
-
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
 	}
@@ -380,43 +359,8 @@ void processInput(GLFWwindow *window)
 	}
 }
 
-void processJoystickInput(GLFWwindow* window) {
-
-	processJoystickMovement();
-
-	if (joystick.buttonPressed(BUTTON_START))
-		glfwSetWindowShouldClose(window, true);
-}
-
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 	camera.ProcessMouseScroll(yoffset);
-}
-
-void joystick_callback(int joystick, int event) {
-	if (event == GLFW_CONNECTED) {
-		std::string name = glfwGetJoystickName(GLFW_JOYSTICK_1);
-		writeInfo("Joystick " + name + " with id " + std::to_string(joystick) + " connected");
-	}
-	else if (event == GLFW_DISCONNECTED) {
-		writeInfo("Joystick with id " + std::to_string(joystick) + " disconnected");
-	}
-}
-
-void processJoystickMovement() {
-	if (joystick.axisUsed(AXIS_LS_VERTICAL))
-		camera.ProcessJoystick(FORWARD, deltaTime, joystick.getAxisValue(AXIS_LS_VERTICAL));
-	if (joystick.axisUsed(AXIS_LS_HORIZONTAL))
-		camera.ProcessJoystick(RIGHT, deltaTime, joystick.getAxisValue(AXIS_LS_HORIZONTAL));
-
-	if (joystick.axisUsed(AXIS_RS_VERTICAL))
-		camera.ProcessMouseMovement(0.0f, joystick.getAxisValue(AXIS_RS_VERTICAL) * 20);
-	if (joystick.axisUsed(AXIS_RS_HORIZONTAL))
-		camera.ProcessMouseMovement(joystick.getAxisValue(AXIS_RS_HORIZONTAL) * 20, 0.0f);
-
-	if (joystick.axisUsed(AXIS_LT))
-		camera.ProcessMouseScroll(-(joystick.getAxisValue(AXIS_LT) + 1) / 4);
-	if (joystick.axisUsed(AXIS_RT))
-		camera.ProcessMouseScroll((joystick.getAxisValue(AXIS_RT) + 1) / 4);
 }
 
 void calculateDeltaTime() {
