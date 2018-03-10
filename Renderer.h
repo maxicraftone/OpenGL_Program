@@ -7,6 +7,6 @@
 #include "ShaderProgram.h"
 
 void renderLightSource(LightSource l, ShaderProgram shaderProgram);
-void renderEntity(Entity e, Light l, ShaderProgram shaderProgram);
+void renderEntity(Entity e, Light *l, ShaderProgram shaderProgram);
 
 #endif

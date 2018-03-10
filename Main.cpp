@@ -25,60 +25,7 @@ int WIDTH = 1280;
 int HEIGHT = 720;
 
 bool wireframe = false;
-
-float vertices[] = {
-	// positions          // normals           // texture coords
-	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-	0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
-	0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-	0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-
-	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-	0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
-	0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-	0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-
-	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-	0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-	0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-	0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-	0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-	0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-	0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-	0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
-	0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-	0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-
-	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-	0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-	0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-	0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
-};
-
-float vertices2[] = {
-	-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-	0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-	0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f , 1.0f, 0.0f,
-	0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f
-};
+bool controllerUsed;
 
 float vertices3[] = {
 	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
@@ -178,43 +125,45 @@ int main() {
 	lampProgram.linkProgram();
 
 	unsigned int objectVAO = createAndBindVAO();
-	storeDataInAttributeList(0, 3, ownCube, sizeof(vertices), 8, 0);
-	storeDataInAttributeList(1, 3, ownCube, sizeof(vertices), 8, 3 * sizeof(float));
-	storeDataInAttributeList(2, 3, ownCube, sizeof(vertices), 8, 6 * sizeof(float));
-	unbindVAO();
-
-	unsigned int planeVAO = createAndBindVAO();
-	storeDataInAttributeList(0, 3, vertices3, sizeof(vertices), 8, 0);
-	storeDataInAttributeList(1, 3, vertices3, sizeof(vertices), 8, 3 * sizeof(float));
-	storeDataInAttributeList(2, 3, vertices3, sizeof(vertices), 8, 6 * sizeof(float));
+	storeDataInAttributeList(0, 3, ownCube, sizeof(ownCube), 8, 0);
+	storeDataInAttributeList(1, 3, ownCube, sizeof(ownCube), 8, 3 * sizeof(float));
+	storeDataInAttributeList(2, 2, ownCube, sizeof(ownCube), 8, 6 * sizeof(float));
 	unbindVAO();
 
 	unsigned int lightVAO = createAndBindVAO();
-	storeDataInAttributeList(0, 3, vertices, sizeof(vertices), 8, 0);
+	storeDataInAttributeList(0, 3, ownCube, sizeof(ownCube), 8, 0);
 	unbindVAO();
 
-	unsigned int wallTexture = loadDefaultTexture("wall.jpg");
-	unsigned int containerTexture = loadDefaultTexture("container.jpg");
 	unsigned int containerTexture2 = loadDefaultTexture("container2.jpg");
-	unsigned int clayTexture = loadDefaultTexture("clay.jpg");
-
-	shaderProgram.activate();
-
-	shaderProgram.setInt_1("material.diffuse", 0);
+	unsigned int containerTexture2_spec = loadDefaultTexture("container2_specular.jpg");
 
 	TransformationMatrix view;
 	TransformationMatrix projection;
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-	Material material = Material(glm::vec3(0.0f, 0.1f, 0.06f), glm::vec3(0.0f, 0.50980392f, 0.50980392f), glm::vec3(0.50196078f, 0.50196078f, 0.50196078f), 0.25f);
+	Material crateMat(shaderProgram, containerTexture2, containerTexture2_spec, 64.0f);
 
-	LightSource cubeLight = LightSource(Light(Position(0.0f, 0.5f, 1.0f), glm::vec3(1.0f), glm::vec3(1.0f), glm::vec3(1.0f), glm::vec3(0.2f)), 36);
+	PointLight pointLight = PointLight(Position(0.0f, 1.5f, 1.0f), glm::vec3(1.0f), glm::vec3(0.2f), glm::vec3(0.5f), glm::vec3(1.0f), glm::vec3(1.0f, 0.09f, 0.032f));
+	DirectionalLight sun = DirectionalLight(glm::vec3(1.0f, -1.0f, 1.0f), glm::vec3(1.0f, 0.9f, 0.7f), glm::vec3(0.2f), glm::vec3(0.5f), glm::vec3(1.0f));
+	SpotLight spotLight = SpotLight(Position(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -1.0f), 30.0f, glm::vec3(1.0f), glm::vec3(0.2f), glm::vec3(0.5f), glm::vec3(1.0f), glm::vec3(1.0f, 0.09f, 0.032f));
+
+	LightSource cubeLight = LightSource(&spotLight, 36);
 	cubeLight.setScale(0.25f);
 	cubeLight.setIgnoreColor(true);
 
-	Entity cube = Entity(Position(0.0f, 0.0f, 0.0f), 30, material);
-	Entity plane(Position(glm::vec3(0.0f)), 6, material);
+	Entity cubes[] = {
+		Entity(Position(0.0f, 0.0f, 0.0f), 36, crateMat),
+		Entity(Position(2.0f, -2.0f, -3.0f), 36, crateMat),
+		Entity(Position(-2.0f, 1.0f, -7.0f), 36, crateMat),
+		Entity(Position(3.0f, 2.0f, -1.0f), 36, crateMat),
+		Entity(Position(1.0f, 6.0f, -6.0f), 36, crateMat),
+		Entity(Position(3.0f, -1.0f, 3.0f), 36, crateMat),
+		Entity(Position(-4.0f, 0.0f, 1.0f), 36, crateMat),
+		Entity(Position(-2.0f, 1.5f, -3.0f), 36, crateMat),
+		Entity(Position(-3.0f, -4.0f, 2.0f), 36, crateMat),
+		Entity(Position(-5.0f, -1.0f, -3.0f), 36, crateMat)
+	};
 	// ----- GAMELOOP -----
 	while (!glfwWindowShouldClose(window)) {
 		// INPUT
@@ -223,14 +172,16 @@ int main() {
 		glfwGetWindowSize(window, &WIDTH, &HEIGHT);
 
 		// CALC
-		float sinusWave = sin(glfwGetTime());
-		cubeLight.translate(0.0f, sinusWave * 0.01f, 0.0f);
+		float sinusWave = sin(glfwGetTime()) * 10;
+		float posSin = pow(sinusWave, 2);
+		//cubeLight.translate(0.0f, 0.0f, sinusWave * 0.01f);
 
 		TransformationMatrix view = camera.GetViewMatrix();
 		projection.perspective(camera.Zoom, (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 		
 		shaderProgram.activate();
 		shaderProgram.setFloat_3("viewPos", camera.Pos.getPosition());
+		shaderProgram.setFloat_3("light.direction", camera.Front.getPosition());
 		shaderProgram.stop();
 
 		//RENDERING
@@ -265,25 +216,16 @@ int main() {
 		shaderProgram.activate();
 		bindVertexArray(objectVAO);
 		enableAttribs(0, 2);
-		
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, containerTexture2);
 
-		renderEntity(cube, cubeLight.getLight(), shaderProgram);
-
-		disableAttribs(0, 2);
-		unbindVAO();
-
-		bindVertexArray(planeVAO);
-		enableAttribs(0, 2);
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, containerTexture2);
-
-		renderEntity(plane, cubeLight.getLight(), shaderProgram);
+		for (unsigned int i = 0; i < 10; i++)
+		{
+			cubes[i].setRotation(20.0f * i, 12.0f * i, 10.0f * i);
+			renderEntity(cubes[i], cubeLight.getLight(), shaderProgram);
+		}
 
 		disableAttribs(0, 2);
 		unbindVAO();
+
 
 		shaderProgram.stop();
 
@@ -326,6 +268,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
 void processInput(GLFWwindow *window)
 {
+
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
 	}
