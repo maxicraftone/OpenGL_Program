@@ -147,6 +147,10 @@ void ShaderProgram::cleanUp() {
 	glDeleteProgram(shaderProgram);
 }
 
+void ShaderProgram::setTexturebank(const std::string &uniform, unsigned int textureBank) {
+	glUniform1i(glGetUniformLocation(shaderProgram, uniform.c_str()), textureBank);
+}
+
 void ShaderProgram::setFloat_4(const std::string &name, float x, float y, float z, float w) {
 	glUniform4f(glGetUniformLocation(shaderProgram, name.c_str()), x, y, z, w);
 }

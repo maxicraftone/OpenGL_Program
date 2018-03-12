@@ -16,6 +16,7 @@ public:
 	void loadUniforms(void(*func)());
 	void activate(void);
 	bool isActive(void);
+	void setTexturebank(const std::string &uniform, unsigned int textureBank);
 	void setFloat_4(const std::string &name, float x, float y, float z, float w);
 	void setFloat_4(const std::string &name, glm::vec4 floats);
 	void setFloat_3(const std::string &name, float x, float y, float z);
