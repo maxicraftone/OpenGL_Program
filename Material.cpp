@@ -28,24 +28,20 @@ Material::Material(ShaderProgram shaderProgram, const char *diffuseMap, const ch
 	setSpecularTexturebank(shaderProgram);
 }
 
-Material::~Material() {
-	//delete &diffuseMapID;
-	//delete &specularMapID;
-	//delete &diffuseTexBank;
-	//delete &specularTexBank;
-	//delete &m_shininess;
-}
-
 void Material::setupUniforms(ShaderProgram shaderProgram) {
 	setShininessUniform(shaderProgram);
 }
 
 void Material::setDiffuseTexturebank(ShaderProgram shaderProgram) {
+	shaderProgram.activate();
 	shaderProgram.setTexturebank("material.diffuse", diffuseTexBank);
+	shaderProgram.stop();
 }
 
 void Material::setSpecularTexturebank(ShaderProgram shaderProgram) {
+	shaderProgram.activate();
 	shaderProgram.setTexturebank("material.specular", specularTexBank);
+	shaderProgram.stop();
 }
 
 void Material::setShininessUniform(ShaderProgram shaderProgram) {

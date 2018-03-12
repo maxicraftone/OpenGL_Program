@@ -178,7 +178,7 @@ int main() {
 
 		TransformationMatrix view = camera.GetViewMatrix();
 		projection.perspective(camera.Zoom, (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
-		
+
 		shaderProgram.activate();
 		shaderProgram.setFloat_3("viewPos", camera.Pos.getPosition());
 		shaderProgram.setFloat_3("light.direction", camera.Front.getPosition());
@@ -232,7 +232,7 @@ int main() {
 		// EVENTS AND SWAP BUFFERS
 		glfwPollEvents();
 		glfwSwapBuffers(window);
-		
+
 	}
 	// --------------------
 	shaderProgram.cleanUp();
